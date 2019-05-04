@@ -1,4 +1,5 @@
 import mysql.connector as mysql
+from mysql.connector import Error
 import os, sys
 
 db = mysql.connect(
@@ -13,12 +14,7 @@ def running_query():
         DB_NAME = input("Which database would you like to use? ")
         cursor.execute("USE {}".format(DB_NAME))
     except mysql.Error as err:
-        print("Database {} does not exist.".format(DB_NAME))
-        if err.errno == errorcode.ER_BAD_DB_ERROR:
-            create_database(cursor)
-            connection.database = DB_NAME
-        else:
-            print(err)
+        sys.exit("Database {} does not exist. Exiting...".format(DB_NAME))
     input1 = input("What? ")
     input2 = input("From? ")
     input3 = input("Would you like to add anything else (Y/N)? ")
