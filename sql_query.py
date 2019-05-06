@@ -25,8 +25,6 @@ def running_query():
         query = "SELECT {} FROM {};".format(input1, input2) 
     cursor.execute(query)
     query = cursor.fetchall()
-#    for row in query:
-#        print(row[0])
     def pp(cursor, data=None, rowlens=0):
             d = cursor.description
             if not d:
